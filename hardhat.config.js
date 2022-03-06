@@ -100,9 +100,19 @@ task("balance", "Prints an account's balance")
 
 module.exports = {
   networks: {
+    localhost: {
+      url: 'http://127.0.0.1:8545/',
+      allowUnlimitedContractSize: true,
+      gas: 21000000,
+      accounts: {
+        count: 10,
+        mnemonic: process.env.MNEMONIC2,
+      },
+    },
     rinkeby: {
       // url: `https://eth-rinkeby.alchemyapi.io/v2/${process.env.ALCHEMY_KEY}`,
       url: `https://rinkeby.infura.io/v3/${process.env.INFURA_KEY}`,
+      allowUnlimitedContractSize: true,
       gasPrice: 10000000000, //10GWei
       gas: 2100000,
       accounts: {
@@ -131,5 +141,11 @@ module.exports = {
         version: "0.8.0",
       },
     ],
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200
+      }
+    }
   },
 };
